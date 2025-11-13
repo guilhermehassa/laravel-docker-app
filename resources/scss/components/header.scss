@@ -1,0 +1,61 @@
+.netflix-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 10%, transparent);
+  z-index: 999;
+  padding: 20px 60px;
+  transition: background-color 0.4s ease;
+
+  &.scrolled {
+    background-color: var(--netflix-black);
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--netflix-red);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+
+      a {
+        color: var(--netflix-white);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--netflix-light-gray);
+        }
+      }
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .search-icon, .profile-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        fill: var(--netflix-white);
+        transition: fill 0.3s ease;
+
+        &:hover {
+          fill: var(--netflix-light-gray);
+        }
+      }
+    }
+  }
+}

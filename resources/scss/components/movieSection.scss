@@ -54,4 +54,55 @@
       opacity: 1;
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .movies-carousel {
+      .carousel-btn {
+        width: 40px;
+        height: 80px;
+        font-size: 20px;
+
+        &.prev {
+          left: -20px;
+        }
+
+        &.next {
+          right: -20px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 15px;
+
+    .section-title {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .movies-carousel {
+      .carousel-btn {
+        display: none;
+      }
+
+      .carousel-container .movies-row {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+  }
 }

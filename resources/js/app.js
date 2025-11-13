@@ -12,10 +12,6 @@ import { showLoading, hideLoading } from './components/Loading';
 
 $(document).ready(function() {
   
-  // =============================================================================
-  // Helper Functions
-  // =============================================================================
-  
   function findMovie(movieId) {
     if (movieId === 'featured') {
       return window.movieData.featured;
@@ -56,32 +52,15 @@ $(document).ready(function() {
     $('body').css('overflow', 'auto');
   }
 
-  // =============================================================================
-  // Initialize Components
-  // =============================================================================
-  
-  // Header
   initHeaderScroll();
   initSmoothScroll();
   initProfileMenu(showNotification);
-  
-  // Search
   initSearchBar();
-  
-  // Carousel
   initCarousel();
-  
-  // Movie Cards
   initMovieCardHover();
   initMovieActions(showLoading, hideLoading, showNotification, showMovieDetails, findMovie, getMovieTitle);
-  
-  // Modal
   initMovieModal(closeModal);
 
-  // =============================================================================
-  // Welcome Message
-  // =============================================================================
-  
   setTimeout(() => {
     if (!sessionStorage.getItem('netflix-tour-shown')) {
       showNotification('Passe o mouse sobre os filmes para mais opções!');

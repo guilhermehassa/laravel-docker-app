@@ -1,4 +1,3 @@
-// Movie modal functionality
 export function initMovieModal(closeModal) {
   $('#closeModal').click(function() {
     closeModal();

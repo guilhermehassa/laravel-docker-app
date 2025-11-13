@@ -1,4 +1,3 @@
-// Header scroll effect
 export function initHeaderScroll() {
   $(window).scroll(function() {
     if ($(this).scrollTop() > 50) {
@@ -9,7 +8,6 @@ export function initHeaderScroll() {
   });
 }
 
-// Smooth scroll for navigation links
 export function initSmoothScroll() {
   $('.nav-links a').click(function(e) {
     e.preventDefault();
@@ -30,7 +28,6 @@ export function initSmoothScroll() {
   });
 }
 
-// Profile menu
 export function initProfileMenu(showNotification) {
   $('.profile-icon').click(function() {
     const actions = ['Perfil', 'Conta', 'Ajuda', 'Sair da Netflix'];

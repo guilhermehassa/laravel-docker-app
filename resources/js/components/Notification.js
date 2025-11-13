@@ -1,9 +1,6 @@
-// Notification function
 export function showNotification(message) {
-  // Remove existing notifications
   $('.notification').remove();
   
-  // Create notification
   const notification = $(`
     <div class="notification" style="
       position: fixed;
@@ -26,7 +23,6 @@ export function showNotification(message) {
   
   $('body').append(notification);
   
-  // Animate in
   setTimeout(() => {
     notification.css({
       opacity: 1,
@@ -34,7 +30,6 @@ export function showNotification(message) {
     });
   }, 100);
   
-  // Animate out and remove
   setTimeout(() => {
     notification.css({
       opacity: 0,

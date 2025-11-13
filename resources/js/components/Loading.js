@@ -1,4 +1,3 @@
-// Loading functions
 export function showLoading() {
   $('#loading').fadeIn(200);
 }

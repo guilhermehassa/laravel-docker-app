@@ -1,4 +1,3 @@
-// Carousel functionality
 export function initCarousel() {
   $('.carousel-btn').click(function() {
     const direction = $(this).data('direction');

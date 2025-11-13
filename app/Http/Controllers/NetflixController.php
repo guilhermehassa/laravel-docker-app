@@ -30,9 +30,7 @@ class NetflixController extends Controller
     $results = [];
 
     if (!empty($searchTerm)) {
-      // Busca nos dados mocados
       $allMovies = $this->getAllMovies();
-      
       $searchLower = strtolower($searchTerm);
       
       $results = array_filter($allMovies, function($movie) use ($searchLower) {
@@ -41,7 +39,6 @@ class NetflixController extends Controller
               (isset($movie['description']) && stripos(strtolower($movie['description']), $searchLower) !== false);
       });
 
-      // Reindex array
       $results = array_values($results);
     }
 
@@ -53,7 +50,6 @@ class NetflixController extends Controller
 
   private function getAllMovies()
   {
-    // Retorna todos os filmes das categorias
     $categories = $this->getCategoriesData();
     $allMovies = [];
 
@@ -332,47 +328,5 @@ class NetflixController extends Controller
     ];
   }
 
-  public function search(Request $request)
-  {
-    $query = $request->get('q', '');
-    
-    // Simulação de busca nos dados mocados
-    $results = [];
-    
-    if (!empty($query)) {
-      $results = [
-        [
-          'id' => 'search_1',
-          'title' => 'Resultado para: ' . $query,
-          'description' => 'Este é um resultado de busca simulado.',
-          'image' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=225&fit=crop',
-          'rating' => '85% Match',
-          'year' => '2023',
-          'duration' => '1h 45min',
-          'genre' => 'Drama'
-        ]
-      ];
-    }
 
-    return response()->json(['results' => $results]);
-  }
-
-  public function movie($id)
-  {
-    // Retorna detalhes mocados de um filme
-    $movie = [
-      'id' => $id,
-      'title' => 'Filme Detalhado',
-      'description' => 'Esta é a descrição detalhada do filme selecionado.',
-      'image' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=225&fit=crop',
-      'rating' => '90% Match',
-      'year' => '2023',
-      'duration' => '2h 15min',
-      'genre' => 'Drama, Ação',
-      'director' => 'Diretor Exemplo',
-      'cast' => ['Ator 1', 'Ator 2', 'Ator 3']
-    ];
-
-    return response()->json($movie);
-  }
 }

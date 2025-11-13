@@ -158,7 +158,7 @@
     .search-result-image {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 aspect ratio */
+      padding-top: 56.25%;
       overflow: hidden;
     }
 
@@ -271,7 +271,6 @@
       line-height: 1.5;
     }
 
-    /* No Results Styles */
     .no-results,
     .empty-search {
       text-align: center;
@@ -316,7 +315,6 @@
       background: #f40612;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .container {
         padding: 0 20px;

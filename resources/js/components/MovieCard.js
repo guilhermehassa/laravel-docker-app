@@ -1,4 +1,3 @@
-// Movie card hover effect
 export function initMovieCardHover() {
   $('.movie-card').hover(
     function() {
@@ -10,10 +9,8 @@ export function initMovieCardHover() {
   );
 }
 
-// Movie actions
 export function initMovieActions(showLoading, hideLoading, showNotification, showMovieDetails, findMovie, getMovieTitle) {
     
-  // Play action
   $('[data-action="play"]').click(function(e) {
     e.preventDefault();
     const movieId = $(this).data('movie-id');
@@ -25,7 +22,6 @@ export function initMovieActions(showLoading, hideLoading, showNotification, sho
     }, 1000);
   });
 
-  // Add to list action
   $('[data-action="add"]').click(function(e) {
     e.preventDefault();
     const movieId = $(this).data('movie-id');
@@ -43,7 +39,6 @@ export function initMovieActions(showLoading, hideLoading, showNotification, sho
     }
   });
 
-  // Like action
   $('[data-action="like"]').click(function(e) {
     e.preventDefault();
     const movieId = $(this).data('movie-id');
@@ -58,7 +53,6 @@ export function initMovieActions(showLoading, hideLoading, showNotification, sho
     }
   });
 
-  // Details action
   $('[data-action="details"]').click(function(e) {
     e.preventDefault();
     const movieId = $(this).data('movie-id');

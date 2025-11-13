@@ -1,0 +1,527 @@
+// Netflix-like styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --netflix-red: #e50914;
+  --netflix-black: #141414;
+  --netflix-dark-gray: #222222;
+  --netflix-gray: #333333;
+  --netflix-light-gray: #757575;
+  --netflix-white: #ffffff;
+  --netflix-hover-gray: #444444;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: var(--netflix-black);
+  color: var(--netflix-white);
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+// Netflix header styles
+.netflix-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 10%, transparent);
+  z-index: 999;
+  padding: 20px 60px;
+  transition: background-color 0.4s ease;
+
+  &.scrolled {
+    background-color: var(--netflix-black);
+  }
+
+  .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .logo {
+          font-size: 28px;
+          font-weight: bold;
+          color: var(--netflix-red);
+          text-decoration: none;
+      }
+
+      .nav-links {
+          display: flex;
+          list-style: none;
+          gap: 20px;
+
+          a {
+              color: var(--netflix-white);
+              text-decoration: none;
+              font-size: 14px;
+              transition: color 0.3s ease;
+
+              &:hover {
+                  color: var(--netflix-light-gray);
+              }
+          }
+      }
+
+      .nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          .search-icon,
+          .profile-icon {
+              width: 24px;
+              height: 24px;
+              cursor: pointer;
+              fill: var(--netflix-white);
+              transition: fill 0.3s ease;
+
+              &:hover {
+                  fill: var(--netflix-light-gray);
+              }
+          }
+      }
+  }
+}
+
+// Hero section
+.hero-section {
+    position: relative;
+    height: 70vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1489599804319-9cc5d1d13b03?w=1920&h=1080&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+
+    .hero-content {
+        max-width: 500px;
+        z-index: 2;
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+
+            .btn {
+                padding: 12px 30px;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+
+                &.btn-play {
+                    background-color: var(--netflix-white);
+                    color: var(--netflix-black);
+
+                    &:hover {
+                        background-color: rgba(255,255,255,0.8);
+                    }
+                }
+
+                &.btn-info {
+                    background-color: rgba(255,255,255,0.2);
+                    color: var(--netflix-white);
+
+                    &:hover {
+                        background-color: rgba(255,255,255,0.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Movies sections
+.movies-section {
+    padding: 40px 60px;
+
+    .section-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: var(--netflix-white);
+    }
+
+    .movies-carousel {
+        position: relative;
+
+        .carousel-container {
+            position: relative;
+
+            .movies-row {
+                display: flex;
+                gap: 10px;
+                transition: transform 0.5s ease;
+                padding: 10px 0;
+            }
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.8);
+            color: var(--netflix-white);
+            border: none;
+            width: 50px;
+            height: 100px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+
+            &.prev {
+                left: -50px;
+            }
+
+            &.next {
+                right: -50px;
+            }
+
+            &:hover {
+                background-color: rgba(0,0,0,0.9);
+            }
+        }
+
+        &:hover .carousel-btn {
+            opacity: 1;
+        }
+    }
+}
+
+// Movie card
+.movie-card {
+    min-width: 200px;
+    height: 113px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        transform: scale(1.3);
+        z-index: 100;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+
+        .movie-info {
+            opacity: 1;
+        }
+    }
+
+    .movie-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        padding: 15px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        .movie-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .movie-meta {
+            font-size: 12px;
+            color: var(--netflix-light-gray);
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+
+            .rating {
+                color: #46d369;
+            }
+        }
+
+        .movie-actions {
+            display: flex;
+            gap: 5px;
+
+            button {
+                width: 28px;
+                height: 28px;
+                border: 2px solid var(--netflix-light-gray);
+                border-radius: 50%;
+                background: transparent;
+                color: var(--netflix-white);
+                cursor: pointer;
+                font-size: 12px;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    border-color: var(--netflix-white);
+                    background-color: var(--netflix-white);
+                    color: var(--netflix-black);
+                }
+
+                &.play-btn {
+                    background-color: var(--netflix-white);
+                    color: var(--netflix-black);
+                    border-color: var(--netflix-white);
+                }
+            }
+        }
+    }
+}
+
+// Modal
+.movie-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+    display: none;
+
+    .modal-content {
+        background-color: var(--netflix-dark-gray);
+        border-radius: 8px;
+        max-width: 850px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        margin: auto;
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--netflix-white);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-hero {
+            position: relative;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+
+            .modal-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(transparent, rgba(34,34,34,0.8));
+            }
+
+            .modal-hero-content {
+                position: relative;
+                z-index: 2;
+
+                .modal-title {
+                    font-size: 36px;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                }
+
+                .modal-buttons {
+                    display: flex;
+                    gap: 15px;
+
+                    .btn {
+                        padding: 12px 30px;
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+
+                        &.btn-play {
+                            background-color: var(--netflix-white);
+                            color: var(--netflix-black);
+
+                            &:hover {
+                                background-color: rgba(255,255,255,0.8);
+                            }
+                        }
+
+                        &.btn-add {
+                            background-color: rgba(255,255,255,0.2);
+                            color: var(--netflix-white);
+
+                            &:hover {
+                                background-color: rgba(255,255,255,0.1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .modal-info {
+            padding: 30px 40px;
+
+            .modal-meta {
+                display: flex;
+                gap: 20px;
+                margin-bottom: 20px;
+                font-size: 14px;
+
+                .rating {
+                    color: #46d369;
+                    font-weight: bold;
+                }
+
+                .year, .duration {
+                    color: var(--netflix-light-gray);
+                }
+            }
+
+            .modal-description {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                color: #cccccc;
+            }
+
+            .modal-details {
+                .detail-row {
+                    display: flex;
+                    margin-bottom: 10px;
+                    font-size: 14px;
+
+                    .label {
+                        color: var(--netflix-light-gray);
+                        min-width: 100px;
+                    }
+
+                    .value {
+                        color: var(--netflix-white);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .netflix-header {
+        padding: 15px 20px;
+
+        .navbar {
+            .nav-links {
+                display: none;
+            }
+        }
+    }
+
+    .hero-section {
+        padding: 0 20px;
+        height: 60vh;
+
+        .hero-content {
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    }
+
+    .movies-section {
+        padding: 30px 20px;
+
+        .section-title {
+            font-size: 20px;
+        }
+    }
+
+    .movie-card {
+        min-width: 150px;
+        height: 85px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    .movie-modal .modal-content {
+        width: 95%;
+        margin: 20px;
+
+        .modal-hero {
+            height: 250px;
+            padding: 20px;
+
+            .modal-hero-content .modal-title {
+                font-size: 24px;
+            }
+        }
+
+        .modal-info {
+            padding: 20px;
+        }
+    }
+}
+
+// Loading animation
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid var(--netflix-gray);
+        border-top: 4px solid var(--netflix-red);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

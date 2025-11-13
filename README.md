@@ -1,59 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Netflix Clone - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Clone da interface do Netflix desenvolvido com Laravel, Docker, SCSS e jQuery.
 
-## About Laravel
+## 🚀 Tecnologias
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Laravel 11
+- PHP 8.2
+- Docker & Docker Compose
+- Nginx
+- Vite
+- SCSS
+- jQuery
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Pré-requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Node.js](https://nodejs.org/) (v18 ou superior)
+- [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
 
-## Learning Laravel
+## 🔧 Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 1. Clone o repositório
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone <url-do-repositorio>
+cd laravel-docker-app
+```
 
-## Laravel Sponsors
+### 2. Crie o arquivo .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+cp .env.example .env
+```
 
-### Premium Partners
+> **Nota:** O arquivo `.env` é necessário para o Laravel funcionar, mas não precisa editar nada nele. O projeto não usa configurações customizadas.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 3. Suba os containers Docker
 
-## Contributing
+```bash
+docker compose up -d
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Defina as permissões necessárias
 
-## Code of Conduct
+```bash
+docker compose exec app chmod -R 777 storage bootstrap/cache
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 5. Instale as dependências do Laravel
 
-## Security Vulnerabilities
+```bash
+docker compose exec app composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 6. Gere a chave da aplicação
 
-## License
+```bash
+docker compose exec app php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 7. Instale as dependências do Node.js
+
+```bash
+npm install
+```
+
+### 8. Compile os assets
+
+Para desenvolvimento (com hot reload):
+```bash
+npm run dev
+```
+
+Para produção:
+```bash
+npm run build
+```
+
+## 🌐 Acessando a aplicação
+
+Após seguir todos os passos, acesse:
+
+```
+http://localhost:8080
+```
+
+## 📁 Estrutura do Projeto
+
+```
+├── app/
+│   ├── Http/Controllers/
+│   │   └── NetflixController.php
+├── resources/
+│   ├── views/
+│   │   ├── layouts/
+│   │   ├── components/
+│   │   ├── netflix.blade.php
+│   │   ├── filme.blade.php
+│   │   └── pesquisa.blade.php
+│   ├── scss/
+│   │   ├── app.scss
+│   │   └── components/
+│   └── js/
+│       ├── app.js
+│       └── components/
+├── public/
+│   └── videos/
+│       └── video.mp4
+├── routes/
+│   └── web.php
+├── docker/
+│   └── nginx/
+│       └── default.conf
+├── docker-compose.yml
+└── Dockerfile
+```
+
+## 🎯 Funcionalidades
+
+- ✅ Página inicial estilo Netflix
+- ✅ Carrossel de filmes por categoria
+- ✅ Sistema de busca
+- ✅ Página de resultados de pesquisa
+- ✅ Página individual do filme com vídeo background
+- ✅ Design totalmente responsivo
+- ✅ Dados mocados (não usa banco de dados)
+
+## 🛠️ Comandos Úteis
+
+### Parar os containers
+```bash
+docker compose down
+```
+
+### Ver logs dos containers
+```bash
+docker compose logs -f
+```
+
+### Acessar o container da aplicação
+```bash
+docker compose exec app bash
+```
+
+
+## 📝 Notas
+
+- O projeto usa dados mocados no controller, **não utiliza banco de dados**
+- O arquivo `.env` é necessário apenas para gerar a `APP_KEY` (criptografia do Laravel)
+- Não é necessário editar nenhuma configuração no `.env`
+- A porta padrão é 8080, pode ser alterada no `docker-compose.yml`
+- Sessions e cache usam sistema de arquivos (não requer BD)

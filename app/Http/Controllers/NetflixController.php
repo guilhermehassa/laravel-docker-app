@@ -62,6 +62,44 @@ class NetflixController extends Controller
     return $allMovies;
   }
 
+  public function show($id)
+  {
+    $movie = $this->findMovieById($id);
+
+    if (!$movie) {
+      abort(404, 'Filme não encontrado');
+    }
+
+    return view('filme', compact('movie'));
+  }
+
+  private function findMovieById($id)
+  {
+    if ($id === 'featured') {
+      $featuredMovie = [
+        'id' => 'featured',
+        'title' => 'Stranger Things',
+        'description' => 'Uma série sobrenatural que se passa nos anos 80, onde um grupo de crianças enfrenta criaturas de outra dimensão enquanto procuram por seu amigo desaparecido.',
+        'image' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=225&fit=crop',
+        'rating' => '97% Match',
+        'year' => '2016',
+        'duration' => '4 Temporadas',
+        'genre' => 'Ficção Científica, Terror, Drama'
+      ];
+      return $featuredMovie;
+    }
+
+    $allMovies = $this->getAllMovies();
+    
+    foreach ($allMovies as $movie) {
+      if ($movie['id'] == $id) {
+        return $movie;
+      }
+    }
+
+    return null;
+  }
+
   private function getCategoriesData()
   {
     return [
